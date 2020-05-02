@@ -1,0 +1,13 @@
+.ui-table .ui-widget-header { border: 0px !important ; }
+.ui-table .ui-table-thead > tr > th, .ui-table .ui-table-tfoot > tr > td { 
+    border: 0px !important ; 
+    color:#333333;
+}
+.ui-table .ui-table-tbody > tr > td { border: 0px !important ; }
+
+.ui-table.ui-table-hoverable-rows .ui-table-tbody > tr:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover{
+    background-color: #ffffff !important;
+}
+
+#tblManageUsers label { margin:0px; }
+#tblManageUsers .ui-dropdown .ui-dropdown-label { display: block;}

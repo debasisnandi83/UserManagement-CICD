@@ -1,0 +1,110 @@
+{
+  "result": true,
+  "message": "Api response.",
+  "users":[
+    {
+      "userDetails": {
+        "userid": 101,
+        "email":"debasis1.nandi@gmail.com",
+        "password": "admin@123",
+        "username": "Debasis1",
+        "role": "Admin"
+      },
+      "menu": {
+        "Dashboard": [
+          {
+            "resource_id": 2,
+            "resource_name": "Dashboard",
+            "resource_url": "dashboard",
+            "resource_parent": "Dashboard",
+            "resource_sequence": 0
+          }
+        ],
+        "Menu": [
+          {
+            "resource_id": 4,
+            "resource_name": "Item-1",
+            "resource_url": "dashboard",
+            "resource_parent": "Menu",
+            "resource_sequence": 1
+          },
+          {
+            "resource_id": 4,
+            "resource_name": "Item-2",
+            "resource_url": "dashboard",
+            "resource_parent": "Menu",
+            "resource_sequence": 2
+          }      
+        ],
+        "Admin": [
+          {
+            "resource_id": 4,
+            "resource_name": "User Management",
+            "resource_url": "manageuser",
+            "resource_parent": "Admin",
+            "resource_sequence": 1
+          },
+          {
+            "resource_id": 4,
+            "resource_name": "Add User",
+            "resource_url": "manageuser/add-user",
+            "resource_parent": "Admin",
+            "resource_sequence": 2
+          }
+        ]
+      }
+    },
+    {
+      "userDetails": {
+        "userid": 102,
+        "email":"debasis2.nandi@gmail.com",
+        "password": "admin@123",
+        "username": "Debasis2",
+        "role": "Admin"
+      },
+      "menu": {
+        "Dashboard": [
+          {
+            "resource_id": 2,
+            "resource_name": "Dashboard",
+            "resource_url": "dashboard",
+            "resource_parent": "Dashboard",
+            "resource_sequence": 0
+          }
+        ],
+        "Menu": [
+          {
+            "resource_id": 4,
+            "resource_name": "Item-1",
+            "resource_url": "dashboard",
+            "resource_parent": "Menu",
+            "resource_sequence": 1
+          },
+          {
+            "resource_id": 4,
+            "resource_name": "Item-2",
+            "resource_url": "dashboard",
+            "resource_parent": "Menu",
+            "resource_sequence": 2
+          }      
+        ],
+        "Admin": [
+          {
+            "resource_id": 4,
+            "resource_name": "User Management",
+            "resource_url": "manageuser",
+            "resource_parent": "Admin",
+            "resource_sequence": 1
+          },
+          {
+            "resource_id": 4,
+            "resource_name": "Add User",
+            "resource_url": "manageuser/add-user",
+            "resource_parent": "Admin",
+            "resource_sequence": 2
+          }
+        ]
+      }
+    }
+  ]
+}

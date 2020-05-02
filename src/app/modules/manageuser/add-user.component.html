@@ -1,0 +1,80 @@
+<section class="container_fluid  padding0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <h1 class="size18">Add Users </h1>
+                <div class="col-md-12 padding0 ">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a routerLink="/dashboard">Home</a>
+                        </li>
+                        <li class="active">Add User</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+                <div class="catool_widget" id="form_section">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label for="userName">User Name</label>
+                                <input type="text" class="form-control" formControlName="userName">
+                                <div
+                                    *ngIf="addUserForm.get('userName').errors && (addUserForm.get('userName').dirty || addUserForm.get('userName').touched)">
+                                    <div *ngIf="addUserForm.get('userName').hasError('required')">
+                                        <span class="error">User name missing.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" formControlName="email">
+                                <div
+                                    *ngIf="addUserForm.get('email').errors && (addUserForm.get('email').dirty || addUserForm.get('email').touched)">
+                                    <div *ngIf="addUserForm.get('email').hasError('required')">
+                                        <span class="error">Email missing.</span>
+                                    </div>
+                                    <div *ngIf="addUserForm.get('email').hasError('email')">
+                                        <span class="error">Email must be a valid email address.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea class="form-control" formControlName="address" rows="3"></textarea>
+                                <div
+                                    *ngIf="addUserForm.get('address').errors && (addUserForm.get('address').dirty || addUserForm.get('address').touched)">
+                                    <div *ngIf="addUserForm.get('address').hasError('required')">
+                                        <span class="error">Address missing.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactNo">Contact No</label>
+                                <input type="text" class="form-control" formControlName="contactNo">
+                                <div
+                                    *ngIf="addUserForm.get('contactNo').errors && (addUserForm.get('contactNo').dirty || addUserForm.get('contactNo').touched)">
+                                    <div *ngIf="addUserForm.get('contactNo').hasError('required')">
+                                        <span class="error">Contact number missing.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button [disabled]="!addUserForm.valid" type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-primary marginL10">Reset</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="gap20"></div>
+<div class="gap20"></div>
+<a id="back-to-top" href="javascript:void(0)" class="btn btn-primary btn-lg back-to-top btnTop  hidden-xs" role="button"
+    title="Go to top" data-toggle="tooltip" data-placement="left">
+    <span class="glyphicon glyphicon-menu-up"></span>
+</a>
+<p-growl [life]="growlLife" [(value)]="msgs"></p-growl>
+<my-spinner [loading]="loading"></my-spinner>

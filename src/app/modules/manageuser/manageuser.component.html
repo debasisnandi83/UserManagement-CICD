@@ -1,0 +1,205 @@
+<section class="container_fluid  padding0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                <h1 class="size18">Manage Users </h1>
+                <div class="col-md-12 padding0 ">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a routerLink="/dashboard">Home</a>
+                        </li>
+                        <li class="active">Manage Users </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12">
+                <div class="catool_widget viewReq" id="form_section">
+                    <div class="col-md-12 col-sm-12 col-xs-12 marginT20">
+                        <p-tabView (onChange)="onTabChange($event)">
+                            <p-tabPanel header="Active">
+                                <p-table id="tblManageUsers" #tblManageUsers [paginator]="true" [rows]="5" [first]="0" [scrollable]="true"
+                                    scrollHeight="300px" [rowsPerPageOptions]="[5,10,20]" [value]="userList">
+                            
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width150">Name</th>
+                                            <th class="width150">Email ID</th>
+                                            <th class="width150">Contact No</th>
+                                            <th class="width150">Address</th>
+                                            <th class="width150">Active</th>
+                                            <th class="width100">Action</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                        <tr>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Name" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Name}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.EmailId" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.EmailId}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Mobile" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Mobile}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Address" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Address}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <select [(ngModel)]="rowData.IsActive" class="form-control ">
+                                                        <option value="">Select</option>
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Active}}
+                                                </div>
+                                            </td>
+                                            <td class="width100">
+                                                <a *ngIf="!record['edit']" href="javascript:void(0)" (click)="onRowEditInit(record, indx)"
+                                                    pTooltip="Edit" tooltipPosition="bottom">
+                                                    <i class="fa fa-pencil-square fa-lg text-primary" style="margin-right: 5px;"></i>
+                                                </a>
+                                                <a *ngIf="record['edit']" href="javascript:void(0)" (click)="onRowEditSave(record, indx)"
+                                                    pTooltip="Save" tooltipPosition="bottom">
+                                                    <i class="fa fa-check-square fa-lg text-success" style="margin-right: 5px;"></i>
+                                                </a>
+                                                <a *ngIf="record['edit']" href="javascript:void(0)" (click)="onRowEditCancel(record, indx)"
+                                                    pTooltip="Cancel" tooltipPosition="bottom">
+                                                    <i class="fa fa-times-rectangle fa-lg text-danger"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage" let-columns>
+                                        <tr>
+                                            <td colspan="6">
+                                                No records found
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </p-tabPanel>
+                            <p-tabPanel header="DeActive">
+                                <p-table id="tblManageUsers" #tblManageUsers [paginator]="true" [rows]="5" [first]="0" [scrollable]="true"
+                                    scrollHeight="300px" [rowsPerPageOptions]="[5,10,20]" [value]="userList">
+                            
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width150">Name</th>
+                                            <th class="width150">Email ID</th>
+                                            <th class="width150">Contact No</th>
+                                            <th class="width150">Address</th>
+                                            <th class="width150">Active</th>
+                                            <th class="width100">Action</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                        <tr>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Name" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Name}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.EmailId" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.EmailId}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Mobile" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Mobile}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <input type="text" pInputText [(ngModel)]="rowData.Address" class="form-control">
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Address}}
+                                                </div>
+                                            </td>
+                                            <td class="width150">
+                                                <div *ngIf="rowData['edit']">
+                                                    <select [(ngModel)]="rowData.IsActive" class="form-control ">
+                                                        <option value="">Select</option>
+                                                        <option value="1">Yes</option>
+                                                        <option value="0">No</option>
+                                                    </select>
+                                                </div>
+                                                <div *ngIf="!rowData['edit']">
+                                                    {{rowData.Active}}
+                                                </div>
+                                            </td>
+                                            <td class="width100">
+                                                <a *ngIf="!record['edit']" href="javascript:void(0)" (click)="onRowEditInit(record, indx)"
+                                                    pTooltip="Edit" tooltipPosition="bottom">
+                                                    <i class="fa fa-pencil-square fa-lg text-primary" style="margin-right: 5px;"></i>
+                                                </a>
+                                                <a *ngIf="record['edit']" href="javascript:void(0)" (click)="onRowEditSave(record, indx)"
+                                                    pTooltip="Save" tooltipPosition="bottom">
+                                                    <i class="fa fa-check-square fa-lg text-success" style="margin-right: 5px;"></i>
+                                                </a>
+                                                <a *ngIf="record['edit']" href="javascript:void(0)" (click)="onRowEditCancel(record, indx)"
+                                                    pTooltip="Cancel" tooltipPosition="bottom">
+                                                    <i class="fa fa-times-rectangle fa-lg text-danger"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage" let-columns>
+                                        <tr>
+                                            <td colspan="6">
+                                                No records found
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </p-tabPanel>
+                        </p-tabView>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="gap20"></div>
+<div class="gap20"></div>
+<a id="back-to-top" href="javascript:void(0)" class="btn btn-primary btn-lg back-to-top btnTop  hidden-xs" role="button"
+    title="Go to top" data-toggle="tooltip" data-placement="left">
+    <span class="glyphicon glyphicon-menu-up"></span>
+</a>
+<p-growl [life]="growlLife" [(value)]="msgs"></p-growl>
+<my-spinner [loading]="loading"></my-spinner>
