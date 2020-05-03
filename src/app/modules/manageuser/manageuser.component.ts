@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpService } from '../../core/services/http.service';
 import { ApiConfig } from '../../core/config/api-config';
 import { GlobalConst } from '../../core/config/app-enum';
-import { IManageUser } from '../../core/models/manageuser.model';
+import { IManageUser, IUser } from '../../core/models/manageuser.model';
 
 @Component({
     selector: 'app-manageuser',
@@ -19,7 +19,7 @@ export class ManageUserComponent implements OnInit {
     msgs: any[] = [];
     growlLife: number = GlobalConst.growlLife;
 
-    userList: IManageUser[] = [];
+    userList: IUser[] = [];
     
     constructor(private fb: FormBuilder, private router: Router, private service: HttpService) {
     }
@@ -31,7 +31,7 @@ export class ManageUserComponent implements OnInit {
 
     onTabChange(event: any) {
         if (event.index == 0) {
-            //this.getData();
+            this.getData();
         }
     }
 
@@ -39,12 +39,31 @@ export class ManageUserComponent implements OnInit {
         this.loading = true;
         this.userList = [];
         this.service.get(ApiConfig.getUsersApi).subscribe(res => {
-            this.userList = res.result ? res.results : [];
+            if(res && res.length > 0){
+                this.userList = this.mapData(res);
+            }
             this.loading = false;
         }, error => {
             this.loading = false;
             console.log(error);
         });
+    }
+
+    mapData(rows: IManageUser[]): IUser[] {
+        let dataList: IUser[] = [];
+        rows.forEach(x => {
+            let row: IUser = {
+                id: x.Id,
+                name: x.Name,
+                emailId: x.EmailId,
+                address: x.Address,
+                contactNo: x.Mobile,
+                active: x.IsActive ? 'Yes' : 'No',
+                edit: false
+            };
+            dataList.push(row);
+        });
+        return dataList;
     }
 
     onRowEditInit(rowData: any, index: number) {
@@ -60,13 +79,14 @@ export class ManageUserComponent implements OnInit {
             let error: number = 0;
             if (error == 0) {
                 this.loading = true;
-                this.service.put(ApiConfig.updateUserApi, rowData).subscribe(res => {
-                    if (res.result) {
-                        this.showSuccess(res.message);
+                let model: any = this.mapModel(rowData);
+                this.service.post(ApiConfig.updateUserApi, model).subscribe(res => {
+                    if (res.IsSuccess) {
+                        this.showSuccess(res.ReturnMessage);
                         rowData.edit = false;
                     }
                     else {
-                        this.showError(res.message);
+                        this.showError(res.ReturnMessage);
                     }
                     this.loading = false;
                 }, err => {
@@ -75,6 +95,17 @@ export class ManageUserComponent implements OnInit {
                 });
             }
         }
+    }
+
+    mapModel(model: IUser): IManageUser {
+        return {
+            Id: model.id,
+            Name: model.name ? model.name : '',
+            EmailId: model.emailId ? model.emailId : '',
+            Address: model.address ? model.address : '',
+            Mobile: model.contactNo ? model.contactNo : '',
+            IsActive: model.active == 'Yes' ? true : false
+        };
     }
 
     showSuccess(message: string) {

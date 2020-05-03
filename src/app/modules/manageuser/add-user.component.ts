@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
         this.addUserForm = this.fb.group({
             userName: ['', Validators.required],
             address:['', Validators.required],
-            contactNo:[''],
+            contactNo:['', Validators.required],
             email:['', [Validators.required, Validators.email]]
         });
     }
@@ -38,15 +38,15 @@ export class AddUserComponent implements OnInit {
             this.loading = true;
             let model: IManageUser = this.mapModel(this.addUserForm.value);
             this.service.post(ApiConfig.createUserApi, model)
-                .subscribe(response => {
-                    if (response) {
-                        this.showSuccess("User registration done successfully");
+                .subscribe(res => {
+                    if (res.IsSuccess) {
+                        this.showSuccess(res.ReturnMessage);
                         setTimeout(() => {
                             this.addUserForm.reset();
                         }, GlobalConst.growlLife);
                     }
                     else {
-                        this.showError("User registration fails");
+                        this.showError(res.ReturnMessage);
                     }
                     this.loading = false;
                 }, err => {
