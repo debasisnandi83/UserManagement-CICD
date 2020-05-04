@@ -1,0 +1,6 @@
+{
+    "apiServer": {
+        "devUrl": "http://localhost:61080/",
+        "prodUrl": "http://localhost:61080/"
+    }
+}
