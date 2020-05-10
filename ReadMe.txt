@@ -105,3 +105,11 @@ EXPOSE 80
 
 # run nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+4) Commands
+
+//Push image to docker hub
+docker login
+docker tag usermanagement-ui-i:1.0 debasisnandi83/user-management-2020:ui-v1
+docker push debasisnandi83/user-management-2020:ui-v1
+
