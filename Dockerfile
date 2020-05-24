@@ -35,13 +35,13 @@ FROM nginx:1.16.0-alpine
 COPY dist/UserManagementUI /usr/share/nginx/html
 
 # copy local assets folder inside container
-COPY ./src/assets/ /usr/share/nginx/html/src/assets/
+COPY ./src/assets /usr/share/nginx/html/src/assets
 
 # create folder within container
-#RUN mkdir -p /usr/share/nginx/html/src/assets/Fonts/
+#RUN mkdir -p /usr/share/nginx/html/src/assets/fonts/
 
 # copy local font folder inside container
-#COPY ./src/assets/Fonts/ /usr/share/nginx/html/src/assets/
+#COPY ./src/assets/fonts/ /usr/share/nginx/html/src/assets/
 
 # listing folders and files within container 
 #RUN ls -laR /usr/share/nginx/html/src/assets/*
