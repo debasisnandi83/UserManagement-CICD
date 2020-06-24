@@ -18,11 +18,22 @@ export class AddUserComponent implements OnInit {
     loading: boolean = false;
     msgs: any[] = [];
     growlLife: number = GlobalConst.growlLife;
+    appConfig:any;
 
     addUserForm:FormGroup;
 
     constructor(private fb: FormBuilder, private router: Router, private service: HttpService) {
     }
+
+    /*async ngOnInit() {        
+        this.addUserForm = this.fb.group({
+            userName: ['', Validators.required],
+            address:['', Validators.required],
+            contactNo:['', Validators.required],
+            email:['', [Validators.required, Validators.email]]
+        });
+        this.appConfig = await this.service.getAppConfig();
+    }*/
 
     ngOnInit() {        
         this.addUserForm = this.fb.group({
@@ -37,6 +48,7 @@ export class AddUserComponent implements OnInit {
         if (this.addUserForm.valid) {
             this.loading = true;
             let model: IManageUser = this.mapModel(this.addUserForm.value);
+            //let url: any = this.appConfig.apiServer.devUrl + ApiConfig.createUserApi;
             this.service.post(ApiConfig.createUserApi, model)
                 .subscribe(res => {
                     if (res.IsSuccess) {

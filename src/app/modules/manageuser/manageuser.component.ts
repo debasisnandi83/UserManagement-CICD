@@ -18,13 +18,20 @@ export class ManageUserComponent implements OnInit {
     loading: boolean = false;
     msgs: any[] = [];
     growlLife: number = GlobalConst.growlLife;
+    appConfig:any;
 
     userList: IUser[] = [];
     
     constructor(private fb: FormBuilder, private router: Router, private service: HttpService) {
     }
 
-    ngOnInit() {        
+    /*async ngOnInit() {
+        this.appConfig = await this.service.getAppConfig();
+        let event: any= { index: 0 };
+        this.onTabChange(event);
+    }*/
+
+    ngOnInit() {
         let event: any= { index: 0 };
         this.onTabChange(event);
     }
@@ -38,6 +45,7 @@ export class ManageUserComponent implements OnInit {
     getData() {
         this.loading = true;
         this.userList = [];
+        //let url: any = this.appConfig.apiServer.devUrl + ApiConfig.getUsersApi;
         this.service.get(ApiConfig.getUsersApi).subscribe(res => {
             if(res && res.length > 0){
                 this.userList = this.mapData(res);
@@ -80,6 +88,7 @@ export class ManageUserComponent implements OnInit {
             if (error == 0) {
                 this.loading = true;
                 let model: any = this.mapModel(rowData);
+                //let url: any = this.appConfig.apiServer.devUrl + ApiConfig.updateUserApi;
                 this.service.post(ApiConfig.updateUserApi, model).subscribe(res => {
                     if (res.IsSuccess) {
                         this.showSuccess(res.ReturnMessage);

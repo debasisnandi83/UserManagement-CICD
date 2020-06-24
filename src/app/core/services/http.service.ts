@@ -6,17 +6,29 @@ import { tap, map, filter, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AppConfig } from '../services/appconfig.service';
 //import { ApiConfig } from '../config/api-config';
+//import { EnvService } from './env.service';
+import { IAppConfig } from '../../core/models/appconfig.model';
 
 @Injectable()
 export class HttpService {
 
-    constructor(private http: HttpClient) { }
+    appConfig: IAppConfig;
+    //baseApi: any;
+    baseApi: any = environment.production ? AppConfig.settings.apiServer.prodUrl : AppConfig.settings.apiServer.devUrl;
+    
+    constructor(private http: HttpClient) {
+    }
 
-    baseApi = environment.production ? AppConfig.settings.apiServer.prodUrl : AppConfig.settings.apiServer.devUrl;
+    async getAppConfig(): Promise<any> {
+        let jsonFile = '/src/assets/config/appconfig.json';
+        let appConfig: any = await this.http.get<any>(jsonFile).toPromise();
+        return appConfig;
+    }
 
     get(api: any): Observable<any> {
         //let url: string = ApiConfig.baseApi + api;
         let url: string = this.baseApi + api;
+        //let url: string = api;
         let httpOptions = { headers: this.handleHeaders() };
         return this.http.get(url, httpOptions)
             .pipe(catchError(this.handleError));
@@ -25,6 +37,7 @@ export class HttpService {
     post(api: any, model: any): Observable<any> {
         //let url: string = ApiConfig.baseApi + api;
         let url: string = this.baseApi + api;
+        //let url: string = api;
         let httpOptions = { headers: this.handleHeaders() };
         return this.http.post(url, model, httpOptions)
             .pipe(catchError(this.handleError));

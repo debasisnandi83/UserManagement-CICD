@@ -37,6 +37,9 @@ COPY dist/UserManagementUI /usr/share/nginx/html
 # copy local assets folder inside container
 COPY ./src/assets /usr/share/nginx/html/src/assets
 
+#copy env.js file
+COPY ./src/env.js /usr/share/nginx/html/src
+
 # create folder within container
 #RUN mkdir -p /usr/share/nginx/html/src/assets/fonts/
 
