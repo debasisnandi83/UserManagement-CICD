@@ -31,14 +31,11 @@ FROM nginx:1.16.0-alpine
 # copy artifact build from the 'build environment'
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# copy local dist folder inside container(This will aplicable when we have empty container with base image.)
-#COPY dist/UserManagementUI /usr/share/nginx/html
-
 # copy local assets folder inside container
-#COPY ./src/assets /usr/share/nginx/html/src/assets
+COPY ./src/assets /usr/share/nginx/html/src/assets
 
 #copy env.js file
-#COPY ./src/env.js /usr/share/nginx/html/src
+COPY ./src/env.js /usr/share/nginx/html/src
 
 # create folder within container
 #RUN mkdir -p /usr/share/nginx/html/src/assets/fonts/
