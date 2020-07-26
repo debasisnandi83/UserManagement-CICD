@@ -15,7 +15,7 @@ variables:
   imageRepository: 'debasisnandiusermanagementcicd'
   containerRegistry: 'acrusermanagementcicd.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '$(Build.BuildNumber)'
   imagePullSecret: 'acrusermanagementcicd1254e09b-auth'
 
   # Agent VM image name
