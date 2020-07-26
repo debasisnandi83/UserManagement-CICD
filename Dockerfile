@@ -3,23 +3,23 @@
 #############
 
 # base image
-#FROM node:12.2.0 as build
+FROM node:12.2.0 as build
 
 # set working directory
-#WORKDIR /app
+WORKDIR /app
 
 # add `/app/node_modules/.bin` to $PATH
-#ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
-#COPY package.json /app/package.json
-#RUN npm install
+COPY package.json /app/package.json
+RUN npm install
 
 # add app
-#COPY . /app
+COPY . /app
 
 # generate build
-#RUN ng build --output-path=dist
+RUN ng build --output-path=dist
 
 ############
 ### prod ###
@@ -29,16 +29,16 @@
 FROM nginx:1.16.0-alpine
 
 # copy artifact build from the 'build environment'
-#COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # copy local dist folder inside container(This will aplicable when we have empty container with base image.)
-COPY dist/UserManagementUI /usr/share/nginx/html
+#COPY dist/UserManagementUI /usr/share/nginx/html
 
 # copy local assets folder inside container
-COPY ./src/assets /usr/share/nginx/html/src/assets
+#COPY ./src/assets /usr/share/nginx/html/src/assets
 
 #copy env.js file
-COPY ./src/env.js /usr/share/nginx/html/src
+#COPY ./src/env.js /usr/share/nginx/html/src
 
 # create folder within container
 #RUN mkdir -p /usr/share/nginx/html/src/assets/fonts/
