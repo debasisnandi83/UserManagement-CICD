@@ -53,7 +53,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'debasisnandi83UserManagementCICD.usermanagement-cicd'
+    environment: 'debasisnandi83UserManagementCICD'
     strategy:
       runOnce:
         deploy:
