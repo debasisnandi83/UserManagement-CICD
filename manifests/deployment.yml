@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: usermanagementcicd 
-          image: acrusermanagementcicd.azurecr.io/usermanagementcicd
+          image: acrusermanagementexp1.azurecr.io/usermanagementcicd
           ports:
           - containerPort: 80
