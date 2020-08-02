@@ -1,19 +1,20 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: debasisnandiusermanagementcicd 
+  name: usermanagementcicd
+  namespace: user-management 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: debasisnandiusermanagementcicd
+      app: usermanagementcicd
   template:
     metadata:
       labels:
-        app: debasisnandiusermanagementcicd 
+        app: usermanagementcicd 
     spec:
       containers:
-        - name: debasisnandiusermanagementcicd 
-          image: acrusermanagementcicd.azurecr.io/debasisnandiusermanagementcicd
+        - name: usermanagementcicd 
+          image: acrusermanagementcicd.azurecr.io/usermanagementcicd
           ports:
           - containerPort: 80
