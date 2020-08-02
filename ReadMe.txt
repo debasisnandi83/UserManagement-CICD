@@ -38,7 +38,7 @@ Example-1 : CICD
 3 - create pipelines
 -> Connect: GitHub
 -> Select: Repository(debasisnandi83/UserManagement-CICD)
--> Configure: 
+-> Configure: Deploy to azure kubernetes service(This option is visible when there is no azure-pipeline.yaml file available)
 -> Review: azure-pipelines.yaml
 -> run
 
