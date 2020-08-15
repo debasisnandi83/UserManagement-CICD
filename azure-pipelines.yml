@@ -12,8 +12,8 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'ea57a4f0-0d68-4405-913b-8323fa114feb'
-  imageRepository: 'usermanagementcicd'
-  containerRegistry: 'acrusermanagementexp1.azurecr.io'
+  imageRepository: 'acrusermanagement'
+  containerRegistry: 'acrusermanagement.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'acrusermanagementexp1e339-auth'
