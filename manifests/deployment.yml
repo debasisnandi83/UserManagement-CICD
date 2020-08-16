@@ -1,20 +1,20 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: usermanagementcicd
+  name: usermanagementui
   namespace: user-management 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: usermanagementcicd
+      app: usermanagementui
   template:
     metadata:
       labels:
-        app: usermanagementcicd 
+        app: usermanagementui 
     spec:
       containers:
-        - name: usermanagementcicd 
-          image: acrusermanagementexp1.azurecr.io/usermanagementcicd
+        - name: usermanagementui 
+          image: acrusermanagement.azurecr.io/acrusermanagement
           ports:
           - containerPort: 80
